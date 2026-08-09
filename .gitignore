@@ -3,4 +3,5 @@ __pycache__/
 data/
 outputs/
 .ipynb_checkpoints/
-libero_hdf5/
+models/
+logs/
