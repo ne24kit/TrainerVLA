@@ -1,7 +1,7 @@
 #!/bin/bash
 
-NAME=smolvla_libero90_b64_10k
-RUN=${NAME}_$(date +%Y%m%d_%H%M%S)
+NAME=smolvla_libero90_pretrain
+RUN=${NAME} #_$(date +%Y%m%d_%H%M%S)
 
 LOG_DIR=./logs/$RUN
 OUT_DIR=./outputs/$RUN
@@ -28,7 +28,7 @@ lerobot-train \
   \
   --batch_size=64 \
   --num_workers=16 \
-  --steps=10000 \
+  --steps=100000 \
   \
   --log_freq=50 \
   --save_freq=2000 \
