@@ -1,11 +1,13 @@
 #!/bin/bash
 
 RUN=smolvla_libero90_pretrain
-CKPT=100000
+CKPT=070000
 
 POLICY_PATH="./outputs/$RUN/checkpoints/$CKPT/pretrained_model"
 
-LOG_DIR=./logs/$RUN/$CKPT
+# README target: first three LIBERO/LeRobot env task_ids for libero_goal.
+# Local HF dataset task_index order differs, so match demos by text if needed.
+LOG_DIR=./logs/$RUN/${CKPT}_libero_goal_0_2
 mkdir -p "$LOG_DIR"
 
 OUT_DIR=$LOG_DIR
@@ -27,7 +29,7 @@ lerobot-eval \
   --env.observation_width=256 \
   --env.max_parallel_tasks=1 \
   \
-  --eval.n_episodes=50 \
+  --eval.n_episodes=10 \
   --eval.batch_size=1 \
   \
   --output_dir="$OUT_DIR" \
