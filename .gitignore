@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+data/
+outputs/
+.ipynb_checkpoints/
+models/
+logs/
+unsloth_compiled_cache/
+logs_task_4/
+robometer/
+

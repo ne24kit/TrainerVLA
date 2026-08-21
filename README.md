@@ -1,5 +1,34 @@
 # TrainerVLA
 Доучить VLA до новых задач малым бюджетом демо
+
+## Воспроизведение
+
+Основные команды воспроизведения лежат в `scripts/repro`.
+
+```bash
+./scripts/repro/setup_env.sh
+./scripts/repro/download_assets.sh
+./scripts/repro/prepare_task2_replay_datasets.sh
+```
+
+Дальше запускать нужный блок экспериментов:
+
+```bash
+./scripts/repro/run_task1_baseline.sh
+./scripts/repro/run_task2_replay.sh
+./scripts/repro/run_task2_replan_eval.sh
+./scripts/repro/run_task2_lora.sh
+./scripts/repro/run_task4_reward_free.sh
+```
+
+Локальные правки LeRobot/Robometer применяются скриптом
+`scripts/repro/apply_venv_patches.py`; он вызывается из `setup_env.sh`.
+Если подготовка replay-датасетов падает на битом AV1-видео, сначала выполнить:
+
+```bash
+./scripts/repro/fix_libero_goal_video.sh
+```
+
 Цель
 
 Современные VLA-модели (vision-language-action) обучаются на больших робо-датасетах и обещают «обучить один раз, использовать в самых разных задачах». На практике узкое место — цена адаптации: каждая новая задача требует новых телеоп-демонстраций, а телеоп-дорог и не скейлится. Наша цель — сдвигать эту кривую: тот же success за меньше разметки, в пределе из одного лишь видео. Вторая цель — оценка без реварда: у большинства реальных задач нет reward-функции, и мы учим модели измерять прогресс и качество поведения прямо по видео.
